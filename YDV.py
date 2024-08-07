@@ -73,7 +73,7 @@ tk.Radiobutton(root, text="WAV", variable=format_var, value="wav").pack(pady=5)
 
 # FFmpeg-polku
 tk.Label(root, text="FFmpeg Location:").pack(pady=5)
-ffmpeg_path = tk.StringVar()
+ffmpeg_path = tk.StringVar(value=r"C:\Users\pkarj\ffmpeg-2024-08-04-git-eb3cc508d8-full_build\bin")
 tk.Entry(root, textvariable=ffmpeg_path, width=50).pack(pady=5)
 tk.Button(root, text="Browse", command=browse_ffmpeg).pack(pady=5)
 
