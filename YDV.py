@@ -9,8 +9,8 @@ import time
 def download_audio():
     youtube_url = url_entry.get()
     output_format = format_var.get()
-    ffmpeg_location = #LAITA TÄHÄN FFMPEG_BIN POLKU
-
+    ffmpeg_location = ffmpeg_path.get()
+    
     if not youtube_url:
         messagebox.showwarning("Input Error", "Please enter a YouTube URL.")
         return
@@ -42,7 +42,6 @@ def download_audio():
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {str(e)}")
 
-
 def monitor_clipboard():
     recent_value = ""
     while True:
@@ -52,6 +51,10 @@ def monitor_clipboard():
             url_entry.delete(0, tk.END)
             url_entry.insert(0, recent_value)
         time.sleep(1)  # Tarkistaa leikepöydän joka sekunti
+
+def browse_ffmpeg():
+    folder_selected = filedialog.askdirectory()
+    ffmpeg_path.set(folder_selected)
 
 # Luodaan pääikkuna
 root = tk.Tk()
@@ -68,6 +71,12 @@ format_var = tk.StringVar(value="mp3")
 tk.Radiobutton(root, text="MP3", variable=format_var, value="mp3").pack(pady=5)
 tk.Radiobutton(root, text="WAV", variable=format_var, value="wav").pack(pady=5)
 
+# FFmpeg-polku
+tk.Label(root, text="FFmpeg Location:").pack(pady=5)
+ffmpeg_path = tk.StringVar()
+tk.Entry(root, textvariable=ffmpeg_path, width=50).pack(pady=5)
+tk.Button(root, text="Browse", command=browse_ffmpeg).pack(pady=5)
+
 # Lataa-painike
 tk.Button(root, text="Download Audio", command=download_audio).pack(pady=20)
 
@@ -77,3 +86,4 @@ clipboard_thread.start()
 
 # Käynnistetään GUI
 root.mainloop()
+
