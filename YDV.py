@@ -9,7 +9,7 @@ import time
 def download_audio():
     youtube_url = url_entry.get()
     output_format = format_var.get()
-    ffmpeg_location = r"C:\Users\pkarj\ffmpeg-2024-08-04-git-eb3cc508d8-full_build\bin"
+    ffmpeg_location = #LAITA TÄHÄN FFMPEG_BIN POLKU
 
     if not youtube_url:
         messagebox.showwarning("Input Error", "Please enter a YouTube URL.")
